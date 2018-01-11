@@ -1,0 +1,4 @@
+FROM pkdogcom/tensorflow:cudnn6-py3
+
+RUN apt-get update && apt-get -y install libhdf5-dev python3-pydot graphviz && \
+    pip3 install keras h5py

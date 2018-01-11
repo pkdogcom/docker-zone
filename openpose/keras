@@ -1,0 +1,5 @@
+FROM pkdogcom/keras:tf
+
+RUN pip install configobj && cd ~ && git clone https://github.com/anatolix/keras_Realtime_Multi-Person_Pose_Estimation.git
+
+WORKDIR /root/keras_Realtime_Multi-Person_Pose_Estimation

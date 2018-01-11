@@ -1,0 +1,4 @@
+FROM pkdogcom/openpose:caffe
+
+ENTRYPOINT ["./build/examples/openpose/openpose.bin", "--camera", "0", "--net_resolution"]
+CMD ["-1x368"]

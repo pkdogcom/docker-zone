@@ -8,12 +8,4 @@ ENV PYTHONPATH=$PYTHONPATH:$MODELS_HOME:$MODELS_HOME/research/slim:$MODELS_HOME/
 RUN git clone https://github.com/tensorflow/models.git $MODELS_HOME && \
     cd $MODELS_HOME/research && protoc object_detection/protos/*.proto --python_out=. 
 
-# Install the libraries needed to run a JVM in GUI mode 
-RUN apt-get update && apt-get upgrade -y && \
-    apt-get install -y gedit libgtk2.0-0 libcanberra-gtk-module libxext-dev libxrender-dev libxtst-dev git subversion \
-        mercurial && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    rm -rf /tmp/*
-
 WORKDIR /root

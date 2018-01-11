@@ -1,0 +1,39 @@
+FROM pkdogcom/opencv3.2:cudnn6
+LABEL maintainer pkdogcom@gmail.com
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        build-essential \
+        cmake \
+        git \
+        wget \
+        libatlas-base-dev \
+        libboost-all-dev \
+        libgflags-dev \
+        libgoogle-glog-dev \
+        libhdf5-serial-dev \
+        libleveldb-dev \
+        liblmdb-dev \
+        libopencv-dev \
+        libprotobuf-dev \
+        libsnappy-dev \
+        protobuf-compiler \
+        python-dev \
+        python-numpy \
+        python-pip \
+	python-tk \
+        python-setuptools \
+        python-scipy && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN cd ~ && git clone https://github.com/CMU-Perceptual-Computing-Lab/openpose.git && \
+    cd openpose/3rdparty/caffe/ && cp Makefile.config.Ubuntu16_cuda8.example Makefile.config && \
+    sed -i '/# OPENCV_VERSION := 3/c\OPENCV_VERSION := 3' Makefile.config && \
+    make all -j"$(nproc)" && make distribute -j"$(nproc)" && \
+    cd ../../ && cp ubuntu/Makefile.config.Ubuntu16_cuda8.example Makefile.config && \
+    sed -i '/# OPENCV_VERSION := 3/c\OPENCV_VERSION := 3' Makefile.config && \
+    make all -j"$(nproc)"
+
+RUN cd ~/openpose/models && bash ./getModels.sh 
+
+WORKDIR /root/openpose
+
