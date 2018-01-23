@@ -1,4 +1,4 @@
-FROM pkdogcom/opencv3.2:cudnn6-py3
+FROM pkdogcom/opencv:3.2-cudnn6-py3
 LABEL maintainer pkdogcom@gmail.com
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
