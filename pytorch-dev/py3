@@ -10,7 +10,7 @@ RUN apt-get update && apt-get upgrade -y && \
     rm -rf /tmp/* && \
     # Use Pillow-SIMD for faster preprocessing using PIL API
     pip3 uninstall -y pillow && pip3 install pillow-simd && \
-    pip3 install tensorflow html5lib==0.999999999 # In order to use Tensorboard
+    pip3 install tensorflow html5lib==0.9999999 # In order to use Tensorboard
 
 WORKDIR /root
 
