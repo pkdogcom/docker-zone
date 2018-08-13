@@ -1,4 +1,4 @@
-FROM pkdogcom/tensorflow:cudnn7-py3
+FROM pkdogcom/tensorflow-models:cudnn7-py3
 LABEL maintainer pkdogcom@gmail.com
 
 # Install the libraries needed to run a JVM in GUI mode 

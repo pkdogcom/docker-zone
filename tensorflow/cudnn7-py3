@@ -3,6 +3,6 @@ LABEL maintainer pkdogcom@gmail.com
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 	git protobuf-compiler libcupti-dev python3-pip python3-dev python3-pil python3-lxml python3-tk python3-setuptools && \
-    pip3 install --upgrade pip && pip install jupyter matplotlib tensorflow-gpu html5lib==0.9999999 bleach==1.5.0 && pip install -U numpy
+    pip3 install --upgrade pip && pip install jupyter matplotlib tensorflow-gpu html5lib bleach && pip install -U numpy
 
 
