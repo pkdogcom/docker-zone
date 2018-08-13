@@ -5,13 +5,18 @@ ENV MODELS_HOME=/root/tensorflow/models
 
 ENV PYTHONPATH=$PYTHONPATH:$MODELS_HOME:$MODELS_HOME/research/slim:$MODELS_HOME/research
 
-# Install protobuf 3
+# Install protobuf 3 & some other dependencies
 RUN apt-get install -y software-properties-common python3-software-properties && \
     add-apt-repository -y ppa:maarten-fonville/protobuf && apt-get update && \
-    apt-get install -y protobuf-compiler
+    apt-get install -y protobuf-compiler python3-setuptools && pip3 install Cython
 
 # Download and setup Tensorflow Models
 RUN git clone https://github.com/tensorflow/models.git $MODELS_HOME && \
     cd $MODELS_HOME/research && protoc object_detection/protos/*.proto --python_out=. 
+
+# Install COCO API
+RUN cd /tmp && git clone https://github.com/pkdogcom/coco.git && \
+    cd coco/PythonAPI && make -j$(nproc) && \ 
+    cp -r pycocotools $MODELS_HOME/research/
 
 WORKDIR /root
