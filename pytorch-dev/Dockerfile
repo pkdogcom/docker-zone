@@ -1,4 +1,4 @@
-FROM pkdogcom/pytorch
+FROM pkdogcom/pytorch:0.4.1-py3
 LABEL maintainer pkdogcom@gmail.com
 
 # Install visualization tools and the libraries for pycharm
